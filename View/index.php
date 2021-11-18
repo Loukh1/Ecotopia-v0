@@ -247,7 +247,7 @@
               </div>
             </li>
             <li class="nav-item documentation-link">
-              <a class="nav-link" href="http://www.bootstrapdash.com/demo/connect-plus-free/jquery/documentation/documentation.html" target="_blank">
+              <a class="nav-link" href="AfficherB.php" target="_blank">
                 <span class="icon-bg">
                   <i class="mdi mdi-file-document-box menu-icon"></i>
                 </span>

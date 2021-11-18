@@ -90,7 +90,7 @@ $listeArticles2 = $articleC->afficherArticles2();
             <div class="design-img">
               <?php $h = $article['img'];
               echo "<img src='$h'>"; ?>
-              <span><i class="far fa-heart"></i> 22</span>
+              <span><i class="far fa-heart"></i> <?php echo $article['likes']; ?></span>
               <span></span>
             </div>
             <div class="design-title">
@@ -123,7 +123,7 @@ $listeArticles2 = $articleC->afficherArticles2();
           <div class="blog-img">
           <?php $h = $article['img'];
               echo "<img src='$h'>"; ?>
-            <span><i class="far fa-heart"></i></span>
+            <span><i class="far fa-heart"></i><?php echo $article['likes']; ?></span>
           </div>
           <div class="blog-text">
             <span><?php echo $article['datep']; ?></span>
@@ -131,6 +131,7 @@ $listeArticles2 = $articleC->afficherArticles2();
             <p><?php echo $article['descr']; ?></p>
             <!--<a href = "#">Read More</a>-->
             <?php $h=$article['post_id']; echo"<button><a href='specificB.php?post_id=$h'>Read More</a></button>";  ?>
+            <?php $h=$article['post_id'];if($_SESSION["type"]=="user"){ echo"<button><a href='likeB.php?post_id=$h'>Like</a></button>";  }?>
             <?php $h=$article['post_id'];if($_SESSION["type"]=="admin"){ echo"<button><a href='ModifierB.php?post_id=$h'>Modifier</a></button>";  }?>
             <?php $h=$article['post_id'];if($_SESSION["type"]=="admin"){ echo"<button><a href='SupprimerB.php?post_id=$h'>Supprimer</a></button>"; } ?>
           </div>

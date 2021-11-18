@@ -13,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$user = $query->fetch();
 		$_SESSION["type"] = $user["type"];
 		$_SESSION["user"] = $name;
+    $_SESSION["id"] = $user["id"];
 		if($user["type"] == "admin"){
 		header("location:View/index.php");}
 		if($user["type"] == "user"){
