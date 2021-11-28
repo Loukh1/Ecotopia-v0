@@ -1,5 +1,11 @@
 <?php
 session_start();
+include '../../Controller/commandeController.php';
+$co=new commandeController();
+$com=$co ->getCommande(); //affichage du commande
+
+
+?>
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,53 +45,57 @@ session_start();
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th>User</th>
-                          <th>Product</th>
-                          <th>Sale</th>
-                          <th>Status</th>
-                          <th>Delete</th>
-                          <th>Product</th>
-                          <th>Sale</th>
-                          <th>Status</th>
-                          <th>Delete</th>
+                          <th>Commande N:</th>
+                          <th>User:</th>
+                          <th>Quantity:</th>
+                          <th>Date:</th>
+                          <th>Modify:</th>
+                          <th>Delete:</th>
+                          
                         </tr>
                       </thead>
                       <tbody>
+                        <?php
+                        foreach($com as $cmd)
+                        {
+                          ?>
                         <tr>
-                          <td>Jacob</td>
-                          <td>Photoshop</td>
-                          <td> 28.76%</td>
-                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw">Primary</button></td>
-                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw">Danger</button></td>
+
+                          <td><?php echo $cmd['numCommande'];
+                          ?></td>
+                          <td><?php echo $cmd['id_client'];
+                          ?></td>
+                          <td><?php echo $cmd['quantite_total'];
+                          ?></td>
+                          <td><?php echo $cmd['date'];
+                          ?></td>
+                          
+                          <td><form action="showk.php" method='POST'>
+                            <input type="submit" class="btn btn-primary btn-rounded btn-fw"value='modify'>
+                            <input type="hidden" id='cId' name="cId" value='<?php echo $cmd['id_commande']?>'>
+                        </form>
+                         
+          
+
+
+                         </td>
+                         
+                          <div class="product-removal">
+      
+  
+                          <td> <form action="../DeletCommande.php" method='GET' ><input type="submit" class="btn btn-danger btn-rounded btn-fw" value="delete" >
+                             <input type="hidden" name="cId" value='<?php echo $cmd['id_commande']?>'></form>
+                            
+                          </button></td>
+                        </div>
                         </tr>
-                        <tr>
-                          <td>Messsy</td>
-                          <td>Flash</td>
-                          <td  > 21.06% </td>
-                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw">Primary</button></td>
-                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw">Danger</button></td>
-                        </tr>
-                        <tr>
-                          <td>John</td>
-                          <td>Premier</td>
-                          <td  > 35.00% </td>
-                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw">Primary</button></td>
-                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw">Danger</button></td>
-                        </tr>
-                        <tr>
-                          <td>Peter</td>
-                          <td>After effects</td>
-                          <td > 82.00</td>
-                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw">Primary</button></td>
-                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw">Danger</button></td>
-                        </tr>
-                        <tr>
-                          <td>Dave</td>
-                          <td>53275535</td>
-                          <td > 98.05</td>
-                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw">Primary</button></td>
-                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw">Danger</button></td>
-                        </tr>
+                       
+
+                      <?php
+                        }
+                      ?>
+
+
                       </tbody>
                     </table>
                   </div>
