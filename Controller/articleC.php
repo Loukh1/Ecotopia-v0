@@ -39,8 +39,8 @@ class articleC
             $mail->isSMTP();                                            //Send using SMTP
             $mail->Host       = 'smtp.gmail.com';                       //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = 'louay.kahlaoui@esprit.tn';                      //email mteik
-            $mail->Password   = '201JMT2043';             //SMTP password
+            $mail->Username   = 'ecotopia.tn@gmail.com';                      //email mteik
+            $mail->Password   = '010607azerty';             //SMTP password
             $mail->SMTPSecure = 'ssl';                                  //Enable implicit TLS encryption
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
             $mail->isHTML(true);
@@ -99,6 +99,20 @@ class articleC
     function recupererArticle($post_id)
     {
         $sql = "SELECT * from articles where post_id=$post_id";
+        $db = config::getConnexion();
+        try {
+            $query = $db->prepare($sql);
+            $query->execute();
+
+            $article = $query->fetch();
+            return $article;
+        } catch (Exception $e) {
+            echo 'Erreur: ' . $e->getMessage();
+        }
+    }
+    function recupererArticle2($title)
+    {
+        $sql = "SELECT * from articles where title='".$title."'";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);

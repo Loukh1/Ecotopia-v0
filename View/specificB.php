@@ -16,11 +16,15 @@ if (isset($_GET['post_id'])) {
     $article = $articleC->recupererArticle($_GET['post_id']);
     $listeComments = $commentC->afficherComments($_GET['post_id']);
 }
+
 if (!empty($_POST["comment"])){
     $comment = new comment( null,$_GET['post_id'],$_SESSION["id"],$_SESSION["user"], $_POST['comment'], date("Y-m-d"));
     $commentC->ajouterComment($comment);
     header('refresh: 1');
   }
+  
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -148,7 +152,7 @@ if (!empty($_POST["comment"])){
                             <a href="#"><?php echo $com['name']; ?></a> <span class="comment-time"></span>
                         </span>
                         <p class="comment-txt more"><?php echo $com['comment']; ?></p>
-                        <span><?PHP $h=$com['user_id'];$p=$_GET['post_id']; if($_SESSION["id"] == $h ){ echo "<button type='submit' class='btn btn-default' style='background: #03a9f4;color: white;'><a style='color: #ffffff;text-decoration: none;' href='ModifierComment.php?id=$h&post_id=$p'>MODIFY</a></button>";}?></span>
+                        <span><?PHP $h=$com['user_id'];$p=$article['post_id']; if($_SESSION["id"] == $h ){ echo "<button type='submit' class='btn btn-default' style='background: #03a9f4;color: white;'><a style='color: #ffffff;text-decoration: none;' href='ModifierComment.php?id=$h&post_id=$p'>MODIFY</a></button>";}?></span>
                     </div>
                     <?php
         }
