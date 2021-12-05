@@ -2,32 +2,47 @@
 session_start();
 include_once '../Model/article.php';
 include_once '../Controller/articleC.php';
+include_once '../Controller/commentC.php';
+include_once '../Model/comment.php';
 $article = NULL;
 $articleC = new articleC();
+$listeArticles = $articleC->afficherArticles();
+$comment = NULL;
+$commentC = new commentC();
+
+
+$articleC = new articleC();
 if (isset($_GET['post_id'])) {
-    $article = $articleC->recupererArticle($_GET['post_id']);}
-?>
-<style>
-   .eee {
-  height:auto;
-  width: 70%;
-  background-color: #F0F0F0 ;
+    $article = $articleC->recupererArticle($_GET['post_id']);
+    $listeComments = $commentC->afficherComments($_GET['post_id']);
 }
-</style>
+if (!empty($_POST["comment"])){
+    $comment = new comment( null,$_GET['post_id'],$_SESSION["id"],$_SESSION["user"], $_POST['comment'], date("Y-m-d"));
+    $commentC->ajouterComment($comment);
+    header('refresh: 1');
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<link rel="icon" href="images/icon_tab.png">
+    <link rel="icon" href="images/icon_tab.png">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Article: <?php echo $article['title']; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font awesome icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="blog.css">
+    <link rel="stylesheet" href="assets/css/blog.css">
     <link rel="icon" href="images/icon_tab.png">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/specific.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
 </head>
 
 <body>
@@ -90,36 +105,63 @@ if (isset($_GET['post_id'])) {
         <center>
             <h5><?php echo $article['descr']; ?></h5>
         </center><br><br>
-        <center> <div class="eee"><?php echo $article['body'];?></div></center>
+        <center>
+            <div class="eee"><?php echo $article['body']; ?></div>
+        </center>
     <?php
     }
     ?>
-    <!-- footer -->
-    <div class="footer">
-        <div class="footer-container">
-            <div class="footer-top">
-                <h1>Ecotopia</h1>
-                <ul class="link-list">
-
-                </ul>
-                <div class="social-media-footer">
-                    <p><i class="fab fa-facebook"></i></p>
-                    <p><i class="fab fa-instagram"></i></p>
-                    <p><i class="fab fa-snapchat-square"></i></p>
-                    <p><i class="fab fa-pinterest-square"></i></p>
-                    <p><i class="fab fa-youtube"></i></p>
-                </div>
-            </div>
-            <div class="footer-copyright">
-                <div class="footer-copyright-left">
-                    Created by Group 6
-                </div>
-                <div class="footer-copyright-right">
-                    &copy; 2021-2022
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="comments">
+                    <div class="comments-details">
+                        <span class="total-comments comments-sort"></span>
+                      <!--  <span class="dropdown">
+                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Sort By <span class="caret"></span></button>
+                            <div class="dropdown-menu">
+                                <a href="#" class="dropdown-item">Top Comments</a>
+                                <a href="#" class="dropdown-item">Newest First</a>
+                            </div>
+                        </span>-->
+                    </div>
+                    <div class="comment-box add-comment">
+                        <span class="commenter-pic">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/2048px-User_icon_2.svg.png" class="img-fluid">
+                        </span>
+                        <form class="" method="POST">
+                        <span class="commenter-name">
+                            <input type="text" placeholder="Add a public comment" name="comment">
+                            <button type="submit" class="btn btn-default">Comment</button>
+                            <button type="reset" class="btn btn-default">Cancel</button>
+                        </span>
+                        </form>
+                    </div>
+                    <?php
+        foreach ($listeComments as $com) {
+        ?>
+                    <div class="comment-box">
+                        <span class="commenter-pic">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/2048px-User_icon_2.svg.png" class="img-fluid">
+                        </span>
+                        <span class="commenter-name">
+                            <a href="#"><?php echo $com['name']; ?></a> <span class="comment-time"></span>
+                        </span>
+                        <p class="comment-txt more"><?php echo $com['comment']; ?></p>
+                        <span><?PHP $h=$com['user_id'];$p=$_GET['post_id']; if($_SESSION["id"] == $h ){ echo "<button type='submit' class='btn btn-default' style='background: #03a9f4;color: white;'><a style='color: #ffffff;text-decoration: none;' href='ModifierComment.php?id=$h&post_id=$p'>MODIFY</a></button>";}?></span>
+                    </div>
+                    <?php
+        }
+        ?>
+                    
+                    
+                   
                 </div>
             </div>
         </div>
     </div>
-    <!-- end 
+    <!-- footer -->
+
 </body>
+
 </html>

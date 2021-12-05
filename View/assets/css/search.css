@@ -1,0 +1,40 @@
+.boxcontainer
+{
+  margin: auto;
+  margin-top: 20%;
+  position: relative;
+  width: 300%;
+  height: 42px;
+  border: 4px solid #2980b9;
+  padding: 0px 10px;
+}
+
+.elementcontainer
+{
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.search
+{
+  border: none;
+  height: 100%;
+  width: 100%;
+  padding: 0px 5px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-family: "nunito";
+  color: #424242;
+  font-weight: 500;
+}
+
+.search:focus{
+  outline: none;
+}
+.material-icons
+{
+  font-size: 25;
+  color: #2980b9;
+
+}

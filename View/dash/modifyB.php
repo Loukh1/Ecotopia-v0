@@ -8,14 +8,9 @@ $article = NULL;
 $articleC = new articleC();
 $db = config::getConnexion();
 if (isset($_POST["title"]) && isset($_POST["description"]) && isset($_POST["img"])) {
-  $sql = "UPDATE articles SET title ='" . $_POST["title"] . "', descr ='" . $_POST["description"] . "', img ='" . $_POST["img"] . "', body ='" . $_POST["text_body"] . "' where post_id='" . $i . "'";
-  //$article = new article($_POST['title'], $_POST['text_body'], $_POST['description'], $_POST['img'], 0, $_SESSION["user"], date("Y-m-d"), NULL);
-  try {
-    $query = $db->prepare($sql);
-    $query->execute();
-    header('Location:Articles.php');
-  } catch (PDOException $e) {
-  }
+ $article = new article($_POST["title"],$_POST["text_body"],$_POST["description"],$_POST["img"],NULL,NULL,NULL,NULL);
+ $articleC->modifierArticle($article,$i);
+ header('Location:Articles.php');
 } else {
   $error = "Missing information";
 }

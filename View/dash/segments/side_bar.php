@@ -38,6 +38,7 @@
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="add.php">Add Article</a></li>
                   <li class="nav-item"> <a class="nav-link" href="articles.php">Show Articles</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="showComments.php">Show Comments</a></li>
                 </ul>
               </div>
             </li>

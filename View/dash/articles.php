@@ -2,7 +2,7 @@
 session_start();
 include '../../Controller/articleC.php';
 $articleC = new articleC();
-$listeArticles = $articleC->afficher();
+$listeArticles = $articleC->afficherArticles();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,6 +59,7 @@ $listeArticles = $articleC->afficher();
                           <td>0</td>
                           <td><?php echo $article['author']; ?></td>
                           <td><?php echo $article['datep']; ?></td>
+                          <td><button type="button" class="btn btn-success btn-rounded btn-fw"><?php $h=$article['post_id']; echo"<a style=' color: #ffffff;text-decoration: none;' href='../specificB.php?post_id=$h'>View</a>";?></button></td>
                           <td><button type="button" class="btn btn-primary btn-rounded btn-fw"><?php $h=$article['post_id']; echo"<a style=' color: #ffffff;text-decoration: none;'  href='ModifyB.php?post_id=$h'>Modifier</a>";?></button></td>
                           <td><button type="button" class="btn btn-danger btn-rounded btn-fw"><?php $h=$article['post_id']; $l=$_SERVER['DOCUMENT_ROOT']."/ecotopia/View/SupprimerB.php"; echo"<a style=' color: #ffffff;text-decoration: none;' href='../SupprimerB.php?post_id=$h'>Delete</a>";?></button></td>
                         </tr>
