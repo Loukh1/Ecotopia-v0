@@ -9,7 +9,7 @@ body {
   
 }
 a {
-  color: #4b74fe;
+  color: lightgreen;
   text-decoration: none;
   background-color: transparent;
 }
@@ -49,8 +49,8 @@ nav .onglets p {
   color : #fff
 }
 .e{
-    position: relative;
-    right: 260px;
+    position: absolute;
+    left: 1000px;
 }
 .top-bar {
   display: flex;

@@ -36,16 +36,16 @@ class articleC
             $liste = $query->fetchAll();
 
             $mail = new PHPMailer();
-            $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host       = 'smtp.gmail.com';                       //Set the SMTP server to send through
-            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = 'ecotopia.tn@gmail.com';                      //email mteik
-            $mail->Password   = '010607azerty';             //SMTP password
-            $mail->SMTPSecure = 'ssl';                                  //Enable implicit TLS encryption
-            $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            $mail->isSMTP();                                           
+            $mail->Host       = 'smtp.gmail.com';                       
+            $mail->SMTPAuth   = true;                                   
+            $mail->Username   = 'ecotopia.tn@gmail.com';                      
+            $mail->Password   = '010607azerty';             
+            $mail->SMTPSecure = 'ssl';                                  
+            $mail->Port       = 465;                                   
             $mail->isHTML(true);
 
-            $mail->setFrom('louay.kahlaoui@esprit.tn', $article->getTitle());
+            $mail->setFrom('ecotopia.tn@gmail.com', $article->getTitle());
 
 
             $sid    = "ACba9bef90b6a40080a511ca078e7a0227";
@@ -187,13 +187,13 @@ class articleC
     function resetmail($email, $message)
     {
         $mail = new PHPMailer();
-        $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';                       //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'louay.kahlaoui@esprit.tn';                      //email mteik
-        $mail->Password   = '201JMT2043';             //SMTP password
-        $mail->SMTPSecure = 'ssl';                                  //Enable implicit TLS encryption
-        $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        $mail->isSMTP();                                            
+        $mail->Host       = 'smtp.gmail.com';                       
+        $mail->SMTPAuth   = true;                                   
+        $mail->Username   = 'louay.kahlaoui@esprit.tn';                      
+        $mail->Password   = '201JMT2043';             
+        $mail->SMTPSecure = 'ssl';                                 
+        $mail->Port       = 465;                                    
         $mail->isHTML(true);
 
         $mail->setFrom('louay.kahlaoui@esprit.tn', 'Password Reset');

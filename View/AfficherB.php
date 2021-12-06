@@ -57,12 +57,12 @@ $h = $search['post_id'];
 
   <!--barre de navigation-->
   <nav class="bar-logo">
-
     <a href="index.html">
       <img alt="logo" src="images/icon_tab.png" class="im">
     </a>
-    <h1 class="e">ECOTOPIA</h1>
+    
     <div class="onglets">
+      <br>
       <p class="link">Home</p>
       <p class="link">Events</p>
       <p class="link">Blog</p>
@@ -113,6 +113,7 @@ $h = $search['post_id'];
           <?php
           foreach ($listeArticles as $article) {
           ?>
+          <div style='border: 4px solid lightgreen'>
             <div class="design-item">
               <div class="design-img">
                 <?php $h = $article['img'];
@@ -122,7 +123,10 @@ $h = $search['post_id'];
               </div>
               <div class="design-title">
                 <a href="#"><?php echo $article['title']; ?></a>
+                <br>
+                <p><?php echo $article['descr']; ?></p>
               </div>
+            </div>
             </div>
           <?php
           }
@@ -147,9 +151,9 @@ $h = $search['post_id'];
           foreach ($listeArticles2 as $article) {
           ?>
             <div <?php if ($article['likes'] > 10) {
-                    echo "style='border: 4px solid blue'";
+                    echo "style='border: 4px solid lightgreen'";
                   } else {
-                    echo "style='border: 2px solid black'";
+                    echo "style='border: 4px solid black'";
                   } ?>>
               <div class="blog-item">
                 <div class="blog-img">
@@ -174,7 +178,7 @@ $h = $search['post_id'];
                   } ?>
                   <?php $h = $article['post_id'];
                   if ($_SESSION["type"] == "admin") {
-                    echo "<button><a href='SupprimerB.php?post_id=$h'>Supprimer</a></button>";
+                    echo "<button style='color: green;'><a href='SupprimerB.php?post_id=$h'>Supprimer</a></button>";
                   } ?>
                 </div>
               </div>
