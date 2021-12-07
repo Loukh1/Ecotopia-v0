@@ -298,6 +298,7 @@ class commandedetailController{
       try
       {
         $query=$db->query($sql);
+        $query->execute();
         $com=$query->fetch();
         return $com;
       }

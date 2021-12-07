@@ -69,9 +69,25 @@ foreach($panier as $pan){
         </div>
     </div>
   </div>
-      
-      <button class="checkout"><a href="addcommande.php">checkout</a>
+  <form action="addcommande.php" method="post">
+  <p>Votre Payement:</p>
+
+<div>
+  <input type="radio" name="11" id='11' value='0' checked >
+  <label for="11">Domicile</label>
+</div>
+
+<div>
+  <input type="radio" name="11" id='22' value='1' >
+  <label for="22">En ligne</label>
+</div>
+
+      <button class="checkout">
+      <input type="submit" value="checkout">
       </button>
+      <input type="hidden" name="idclient" value="1">
+  </form>
+  
 
 
 </div>
