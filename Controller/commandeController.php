@@ -42,7 +42,49 @@ class commandeController{
      
   function getCommande() //affichage du commande
    {
-     $sql="select * from commande ";
+     $sql="select * from commande order by date desc ";
+     $db= config::getConnexion();
+     try
+     {
+       return $db->query($sql);
+     }
+     catch (Exception $e)
+     {
+       echo 'Error: '.$e->getMessage();
+     }
+
+   }
+   function getCommandebystateP() //affichage du commande
+   {
+     $sql="select * from commande order by FIELD(state,'pending','delivering','delivered') ";
+     $db= config::getConnexion();
+     try
+     {
+       return $db->query($sql);
+     }
+     catch (Exception $e)
+     {
+       echo 'Error: '.$e->getMessage();
+     }
+
+   }
+   function getCommandebystateD1() //affichage du commande
+   {
+     $sql="select * from commande order by FIELD(state,'delivering','pending','delivered') ";
+     $db= config::getConnexion();
+     try
+     {
+       return $db->query($sql);
+     }
+     catch (Exception $e)
+     {
+       echo 'Error: '.$e->getMessage();
+     }
+
+   }
+   function getCommandebystateD2() //affichage du commande
+   {
+     $sql="select * from commande order by FIELD(state,'delivered','delivering','pending') ";
      $db= config::getConnexion();
      try
      {
@@ -120,6 +162,44 @@ class commandeController{
            echo 'error:'.$e->getMessage();
        }
    }
+   function updatecommandestated1($idcommande) 
+   {
+       $sql="update commande set state='delivering' where id_commande='$idcommande'";
+       $db=config::getConnexion();
+       try
+       {
+           $db->query($sql);
+       }
+       catch (Exception $e)
+       {
+           echo 'error: '.$e->getMessage();
+       }
+   }
+   function updatecommandestated2($idcommande) 
+   {
+       $sql="update commande set state='delivered' where id_commande=$idcommande";
+       $db=config::getConnexion();
+       try
+       {
+           $db->query($sql);
+       }
+       catch (Exception $e)
+       {
+           echo 'error: '.$e->getMessage();
+       }
+   }
+   
 
+    function calcul(){
+        $sql="select count(quantite_total) as total, state as state from commande";
+        $db = config::getConnexion();
+        try{
+        $liste=$db->query($sql);
+        return $liste;
+        }
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+    }
   }
  ?>

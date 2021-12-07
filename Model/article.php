@@ -8,6 +8,7 @@ class article{
     private $likes=NULL;
     private $author=NULL;
     private $datep=NULL;
+    
 
     function __construct($title, $body,$descr,$img, $likes, $author, $date,$post_id)
     {
@@ -18,7 +19,8 @@ class article{
        $this->img = $img;
        $this->likes = $likes;
        $this->author = $author;
-       $this->datep = $date; 
+       $this->datep = $date;
+      
     }
     function getPostId(){
         return $this->post_id;

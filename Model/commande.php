@@ -49,15 +49,17 @@ class Commande{
 	private $id_client;
     private $numCommande;
     private $qunatite_total;
+	private $state=NULL;
+	
 
 	
 
-	function __construct($id_client,$id_Commande,$qunatite_total,$numCommande){
+	function __construct($id_client,$id_Commande,$qunatite_total,$numCommande,$state){
 		$this->id_client=$id_client;
 		$this->id_commande=$id_commande;
 		$this->qunatite_total=$qunatite_total;
         $this->numCommande=$numCommande;
-
+		$this->state=$state; 
 	}
 
 	function getid_Commande(){
@@ -84,6 +86,12 @@ class Commande{
 	function setqunatite_total($qunatite_total){
 		$this->qunatite_total=$qunatite_total;
 	}
+	function getState(){
+        return $this->state;
+    }
+    function setState(string $state){
+        $this->state = $state;
+    }
 
 }
 

@@ -1,5 +1,5 @@
 <?php
-require "config.php";
+require "Controller/config.php";
 session_start();
 $db = config::getConnexion();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
