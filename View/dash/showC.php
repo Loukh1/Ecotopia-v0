@@ -1,5 +1,27 @@
 <?php
 session_start();
+include'../../Model/commande.php';
+include '../../Controller/commandeController.php';
+$co=new commandeController();
+if($_GET['state']=='none'){
+  $com=$co ->getCommande(); //affichage du commande
+}
+else if($_GET['state']=='pending')
+{
+  $com=$co->getCommandebystateP(); //affichage du commande
+}
+else if($_GET['state']=='delivering')
+{
+  $com=$co->getCommandebystateD1();
+}
+else if($_GET['state']=='delivered')
+{
+  $com=$co->getCommandebystateD2();
+}
+
+
+
+?>
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,63 +51,75 @@ session_start();
                 </ol>
               </nav>
             </div>
+            <p>order by</p>
+                    <a href="showC.php?state=none" class="btn btn-primary btn-rounded btn-fw">None</a>
+                    <a href="showC.php?state=delivered" class="btn btn-primary btn-rounded btn-fw">Delivered</a>
+                    <a href="showC.php?state=delivering" class="btn btn-primary btn-rounded btn-fw">Delivering</a>
+                    <a href="showC.php?state=pending" class="btn btn-primary btn-rounded btn-fw">pending</a>
             <div class="row">
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Striped Table</h4>
-                    
-                    </p>
+                    <input id="searchbar" onkeyup="search_animal()" type="text" name="search" placeholder="Search...">
+        
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th>User</th>
-                          <th>Product</th>
-                          <th>Sale</th>
-                          <th>Status</th>
-                          <th>Delete</th>
-                          <th>Product</th>
-                          <th>Sale</th>
-                          <th>Status</th>
-                          <th>Delete</th>
+                          <th>Commande N:</th>
+                          <th>User:</th>
+                          <th>Quantity:</th>
+                          <th>Date:</th>
+                          <th>State:</th>
+                          <th>View:</th>
+                          <th>Delete:</th>
+                          
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>Jacob</td>
-                          <td>Photoshop</td>
-                          <td> 28.76%</td>
-                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw">Primary</button></td>
-                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw">Danger</button></td>
+                        <?php
+                        foreach($com as $cmd)
+                        {
+                          ?>
+                        <tr class="lines">
+
+                          <td><?php echo $cmd['numCommande'];
+                          ?></td>
+                          <td><?php echo $cmd['id_client'];
+                          ?></td>
+                          <td><?php echo $cmd['quantite_total'];
+                          ?></td>
+                          <td><?php echo $cmd['date'];
+                          ?></td>
+                          <td><?php echo $cmd['state'];
+                          ?></td>
+                          
+                          <td><form action="showk.php" method='POST'>
+                            <input type="submit" class="btn btn-primary btn-rounded btn-fw"value='View'>
+                            <input type="hidden" id='cId' name="cId" value='<?php echo $cmd['id_commande']?>'>
+                        </form>
+                         
+          
+
+
+                         </td>
+                         
+                          <div class="product-removal">
+      
+  
+                          <td> <form action="../DeletCommande.php" method='GET' ><input type="submit" class="btn btn-danger btn-rounded btn-fw" value="delete" >
+                             <input type="hidden" name="cId" value='<?php echo $cmd['id_commande']?>'></form>
+                            
+                          </button></td>
+                        </div>
                         </tr>
-                        <tr>
-                          <td>Messsy</td>
-                          <td>Flash</td>
-                          <td  > 21.06% </td>
-                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw">Primary</button></td>
-                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw">Danger</button></td>
-                        </tr>
-                        <tr>
-                          <td>John</td>
-                          <td>Premier</td>
-                          <td  > 35.00% </td>
-                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw">Primary</button></td>
-                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw">Danger</button></td>
-                        </tr>
-                        <tr>
-                          <td>Peter</td>
-                          <td>After effects</td>
-                          <td > 82.00</td>
-                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw">Primary</button></td>
-                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw">Danger</button></td>
-                        </tr>
-                        <tr>
-                          <td>Dave</td>
-                          <td>53275535</td>
-                          <td > 98.05</td>
-                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw">Primary</button></td>
-                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw">Danger</button></td>
-                        </tr>
+                       
+
+                      <?php
+                        }
+                      ?>
+
+
                       </tbody>
                     </table>
                   </div>
@@ -104,5 +138,6 @@ session_start();
                 
               </div>
             </div>
+            
             <?php include "segments/footer.php"; ?>
 </html>
