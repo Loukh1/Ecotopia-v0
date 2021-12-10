@@ -242,7 +242,6 @@
               <div class="collapse" id="ui-basic5">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="dash/showC.php?state=none">Show Commands</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="dash/showstat.php">Show statistic</a></li>
                   
                 </ul>
               </div>
