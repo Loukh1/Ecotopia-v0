@@ -1,9 +1,6 @@
 <?php
-require "config.php";
-session_start();
-$db = config::getConnexion();
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+<<<<<<< Updated upstream
 	$name = $_POST['name'];
 	$password = $_POST['password'];
 	$sql = "SELECT * from user where name='" .$name. "'AND password='" .$password. "'";
@@ -22,6 +19,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 
 }
+=======
+
+>>>>>>> Stashed changes
 
 ?>
 <style>
@@ -258,21 +258,47 @@ form button:hover {
 </style>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+<<<<<<< Updated upstream
 	<meta charset="UTF-8">
 	<link rel="icon" href="View/images/icon_tab.png">
 	<title>Ecotopia: Log in</title>
 	
-
+=======
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="View/assets/css/style1log.css">
 </head>
-
 <body>
-	<!-- partial:index.partial.html -->
-	<div class="wrapper">
-		<div class="container">
-			<h1>Log in</h1>
+    <div class="login-form">
+    <?php
+            if(isset($_GET['login_err']))
+            {
+                $err =htmlspecialchars($_GET['login_err']);
 
+                switch($err)
+                {
+>>>>>>> Stashed changes
+
+                    case 'mdpconnect':
+                    ?>
+                       <div class="alert alert-danger">
+                            <strong>Erreur:</strong> mot de passe incorrect
+                       </div>
+                    <?php
+                    break;
+
+                    case 'mailconnect':
+                        ?>
+                           <div class="alert alert-danger">
+                                <strong>Erreur:</strong> email incorrect
+                           </div>
+                     <?php
+                    break;
+
+<<<<<<< Updated upstream
 			<form class="form" action="#" method="POST">
 				<input type="text" placeholder="Username" name="name">
 				<input type="password" placeholder="Password" name="password">
@@ -296,5 +322,39 @@ form button:hover {
 	<!-- partial -->
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 </body>
+=======
+                    case 'already':
+                        ?>
+                           <div class="alert alert-danger">
+                                <strong>Erreur:</strong> compte non existant
+                           </div>
+                    <?php
+                    break;
 
+
+
+>>>>>>> Stashed changes
+
+                }
+            }
+            ?>
+    <form action="connexion.php" method="post"> 
+        <h1>Se connecter</h1>
+        <div class="form-group">
+              <input type="email" placeholder="mail" name="mailconnect" class="form-control">
+        </div>
+        <br><br>
+        <div class="form-group">
+           <input type="password" placeholder="Mot de passe " name="mdpconnect" class="form-control">
+        </div>
+        <div class="form-group" align="center">
+        <button type="submit" class="btn btn-primary btn-block" name="formconnect"> Login</button>
+        </div>
+        <p class="text-center"  align="center"><a href="View/forgot.php">Forgot_password?</a></p>
+    
+    </form>
+    <p class="text-center"  align="center"><a href="View/formulair dinscription.php">inscription</a></p>
+    
+    
+</body>
 </html>

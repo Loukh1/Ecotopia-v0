@@ -1,11 +1,11 @@
 <?php
 session_start();
-include_once '../Model/article.php';
-include_once '../Controller/articleC.php';
-$article = NULL;
-$articleC = new articleC();
-if (isset($_GET['post_id'])) {
-    $article = $articleC->recupererArticle($_GET['post_id']);}
+include_once '../Model/produit.php';
+include_once '../Controller/produitC.php';
+$produit = NULL;
+$produitC = new produitC();
+if (isset($_GET['id'])) {
+    $produit = $produitC->recupererproduits($_GET['id']);}
 ?>
 <style>
    .eee {
@@ -21,11 +21,11 @@ if (isset($_GET['post_id'])) {
 <link rel="icon" href="images/icon_tab.png">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Article: <?php echo $article['title']; ?></title>
+    <title>produit: <?php echo $produit['nom']; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font awesome icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="blog.css">
+    <link rel="stylesheet" href="assets/css/blog.css">
     <link rel="icon" href="images/icon_tab.png">
     
 </head>
@@ -60,11 +60,12 @@ if (isset($_GET['post_id'])) {
         <a href="index.html">
             <img alt="logo" src="images/icon_tab.png" class="im">
         </a>
+        <h1 class="e">ECOTOPIA</h1>
         <div class="onglets">
             <p class="link">Home</p>
             <p class="link">Events</p>
             <p class="link">Blog</p>
-            <p class="link">Shop</p>
+            <a href="afficherproduits.php">SHOP</a>
             <p class="link">About us</p>
             <form>
                 <input class="search" type="search" placeholder="research" />
@@ -77,19 +78,25 @@ if (isset($_GET['post_id'])) {
     <!-- end of header -->
 
     <?php
-    if (isset($_GET['post_id'])) {
-        $article = $articleC->recupererArticle($_GET['post_id']);
+    if (isset($_GET['id'])) {
+        $produit = $produitC->recupererproduits($_GET['id']);
     ?>
         <center>
-            <h1><?php echo $article['title']; ?></h1>
-        </center>
+            <h1><?php echo $produit['nom']; ?></h1>
+        </center> 
         <center>
-            <h4><?php echo $article['author']; ?>|<?php echo $article['datep']; ?></h4>
-        </center>
-        <center>
-            <h5><?php echo $article['descr']; ?></h5>
+            <h3><?php echo $produit['description']; ?></h3>
         </center><br><br>
-        <center> <div class="eee"><?php echo $article['body'];?></div></center>
+        <center>
+            <h4>prix:<?php echo $produit['prix']; ?>dinars</h4>
+        </center><br><br>
+        <center>
+            <h4>quantite:<?php echo $produit['quantite']; ?></h4>
+        </center><br><br>
+        <center>
+            <img style="width:300px !important" src=<?php echo $produit['urlimage']; ?>>
+        </center><br><br>
+       
     <?php
     }
     ?>
@@ -119,6 +126,6 @@ if (isset($_GET['post_id'])) {
             </div>
         </div>
     </div>
-    <!-- end 
+    <!-- end -->
 </body>
 </html>

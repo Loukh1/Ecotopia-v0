@@ -14,6 +14,7 @@ $listeArticles2 = $articleC->afficherArticles2();
   <title>Ecotopia-Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font awesome icon -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
   <link rel="stylesheet" href="assets/css/blog.css">
   <link rel="icon" href="images/icon_tab.png">
@@ -54,10 +55,18 @@ $listeArticles2 = $articleC->afficherArticles2();
     </a>
     <h1 class="e">ECOTOPIA</h1>
     <div class="onglets">
+<<<<<<< Updated upstream
       <p class="link">Home</p>
       <p class="link">Events</p>
       <p class="link">Blog</p>
       <p class="link">Shop</p>
+=======
+      <br>
+      <p class="link"> <a href="../home.php" style=" color: #000000;text-decoration: none;">Home</a> </p>
+      <p class="link"> <a href="AfficherB.php" style=" color: #000000;text-decoration: none;">Blog</a> </p>
+      <p class="link"> <a href="" style=" color: #000000;text-decoration: none;">Events</a> </p>
+      <p class="link"> <a href="Afficherproduits.php" style=" color: #000000;text-decoration: none;">Shop</a> </p>
+>>>>>>> Stashed changes
       <p class="link">About us</p>
       <form>
         <input class="search" type="search" placeholder="research" />

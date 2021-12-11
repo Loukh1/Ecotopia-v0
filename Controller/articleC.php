@@ -18,7 +18,52 @@ class articleC {
                 'likes' => $article->getLikes(),
                 'author' => $article->getAuthor(),
                 'dates' => $article->getDate(),
+<<<<<<< Updated upstream
             ]);			
+=======
+            ]);
+            $sql = "SELECT * FROM user";
+            $query = $db->prepare($sql);
+            $query->execute();
+            $liste = $query->fetchAll();
+
+            $mail = new PHPMailer();
+            $mail->isSMTP();                                           
+            $mail->Host       = 'smtp.gmail.com';                       
+            $mail->SMTPAuth   = true;                                   
+            $mail->Username   = 'ecotopia.tn@gmail.com';                      
+            $mail->Password   = '010607azerty';             
+            $mail->SMTPSecure = 'ssl';                                  
+            $mail->Port       = 465;                                   
+            $mail->isHTML(true);
+
+            $mail->setFrom('ecotopia.tn@gmail.com', $article->getTitle());
+
+
+            $sid    = "ACba9bef90b6a40080a511ca078e7a0227";
+            $token  = "faf1141db25137cd2f7959e07c32ebc2";
+            $twilio = new Client($sid, $token);
+            foreach ($liste as $a) {   // email eli bch tabath bih
+                $mail->addAddress($a['email']);   // email leli theb tabaathloo
+
+                $mail->Subject = 'Ecotopia: Check out our new article!!!';
+                $mail->Body    = $article->getBody();
+                $mail->send();
+                if($a['phone']!=NULL){
+                $message = $twilio->messages
+                    ->create(
+                        $a['phone'], // to 
+                        array(
+                            "from" => "+12312416952",
+                            "body" => "Ecotopia: Check out this new article! '".$article->getTitle()."'"
+                        )
+                    );
+                   // $message->sid;
+                }
+            }
+        } catch (Exception $e) {
+            echo 'Erreur: ' . $e->getMessage();
+>>>>>>> Stashed changes
         }
         catch (Exception $e){
             echo 'Erreur: '.$e->getMessage();

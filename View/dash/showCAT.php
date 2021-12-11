@@ -1,18 +1,15 @@
 <?php
 session_start();
-include '../../Controller/produitC.php';
-$produitC = new produitC();
-$listeproduits = $produitC->afficherproduits();
-$tri=$produitC->trie_asc();
-if(isset($_POST["submit"])){$listeproduits = $tri; }
-
+include '../../Controller/categorieC.php';
+$categorieC = new categorieC();
+$listecategories = $categorieC->affichercategories();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
-   <title>Show Products</title>
+   <title>Show categories</title>
     <!-- plugins:css -->
     <?php include "segments/plugin.php"; ?>
     </head>
@@ -31,36 +28,27 @@ if(isset($_POST["submit"])){$listeproduits = $tri; }
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">All products</h4>
+                  <h4 class="card-title">All categories</h4>
 
                   </p>
-                  <form action="showP.php" method="POST">
-                    <input type="submit" name="submit" VALUE="triascendant" >
-                   
-                   </form>
                   <table class="table table-hover">
                     <thead>
                       <tr>
-                        <th>product ID</th>
+                        <th>categories ID</th>
                         <th>nom</th>
-                        <th>prix</th>
-                        <th>quantite</th>
-                        <th>idcategorie</th>
+                        
                         
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-                      foreach ($listeproduits as $produits) {
+                      foreach ($listecategories as $categories) {
                       ?>
                         <tr>
-                          <td><?php echo $produits['id']; ?></td>
-                          <td><?php echo $produits['nom']; ?></td>
-                          <td><?php echo $produits['prix']; ?></td>
-                          <td><?php echo $produits['quantite']; ?></td>
-                          <td><?php echo $produits['idcategorie']; ?></td>
-                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw"><?php $h=$produits['id']; echo"<a style=' color: #ffffff;text-decoration: none;'  href='ModifyP.php?id=$h'>Modifier</a>";?></button></td>
-                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw"><?php $h=$produits['id']; $l=$_SERVER['DOCUMENT_ROOT']."/ecotopia/View/SupprimerP.php"; echo"<a style=' color: #ffffff;text-decoration: none;' href='../SupprimerP.php?id=$h'>Delete</a>";?></button></td>
+                          <td><?php echo $categories['id']; ?></td>
+                          <td><?php echo $categories['nom']; ?></td>
+                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw"><?php $h=$categories['id']; echo"<a style=' color: #ffffff;text-decoration: none;'  href='ModifyCat.php?id=$h'>Modifier</a>";?></button></td>
+                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw"><?php $h=$categories['id']; $l=$_SERVER['DOCUMENT_ROOT']."/ecotopia/View/SupprimerCAT.php"; echo"<a style=' color: #ffffff;text-decoration: none;' href='../SupprimerCAT.php?id=$h'>Delete</a>";?></button></td>
                         </tr>
                       <?php
                       }

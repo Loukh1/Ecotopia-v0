@@ -1,0 +1,78 @@
+body{
+    background-image: url('../images/nature.jpg') ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position:0% ;
+    /*background-color:darkred;*/
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+form{
+    max-width: 400px;
+    margin: auto ;
+    margin-top: 150px;
+    background-color: rgba(26, 92, 48, 0.582);
+    text-align: center;
+    border-radius: 20px;
+    padding: 40px 60px;
+    color: #fff;
+    box-sizing: border-box;
+    
+    
+   
+    
+}
+h1{
+    color:#4FB3ED ;
+    text-align: center;
+}
+form .inputs input[type="text"], input[type="password"]{
+    padding: 15px;
+    border-radius: 20px;
+    border:none;
+    outline: none;
+}
+form .inputs input[type="text"], input[type="email"]{
+    padding: 15px;
+    border-radius: 20px;
+    border:none;
+    outline: none;
+    
+}
+
+/*form p.inscription{
+    margin-bottom: 20px;
+}*/
+/*form p.inscription span{
+    color:#4FB3ED;
+}*/
+form button{
+    padding: 15px 25px;
+    border: none;
+    border-radius: 20px;
+    font-size: 15px;
+    color: #fff;
+    background-color:#4FB3ED ;
+    outline: none;
+    cursor: pointer;
+    margin: 20px;
+
+}
+.form-control{
+    max-width: 380px;
+}
+a{
+    padding: 100px;
+    margin-top: 300px;
+    padding-top: 100px;
+    color:#4FB3ED;
+    margin: 20px ;
+}
+.login-form{
+   color: red;
+   
+   
+}
