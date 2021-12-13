@@ -44,7 +44,7 @@ class articleC {
             $token  = "faf1141db25137cd2f7959e07c32ebc2";
             $twilio = new Client($sid, $token);
             foreach ($liste as $a) {   // email eli bch tabath bih
-                $mail->addAddress($a['email']);   // email leli theb tabaathloo
+                $mail->addAddress($a['email']);   // email leli theb tabaatloo
 
                 $mail->Subject = 'Ecotopia: Check out our new article!!!';
                 $mail->Body    = $article->getBody();
