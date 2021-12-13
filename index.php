@@ -1,80 +1,81 @@
 <?php
-require "config.php";
 session_start();
-$db = config::getConnexion();
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-	$name = $_POST['name'];
-	$password = $_POST['password'];
-	$hash= password_hash($password, PASSWORD_DEFAULT);
-	$sql = "SELECT * from user where name='". $name ."'";
-	try {
-		$query = $db->prepare($sql);
-		$query->execute();
-		$user = $query->fetch();
-		$hashh=$user['password'];
-		$verif = password_verify($password, $hash);
-		if ($verif==1) {
-			$_SESSION["type"] = $user["type"];
-			$_SESSION["user"] = $name;
-			$_SESSION["id"] = $user["id"];
-			if ($user["type"] == "admin") {
-				header("location:View/index.php");
-			}
-			if ($user["type"] == "user") {
-				header("location:View/afficherB.php");
-			}
-		}
-	} catch (Exception $e) {
-		die('Erreur: ' . $e->getMessage());
-	}
+if(isset($_SESSION["type"])){
+$_SESSION["type"] = "user";
 }
+else{$_SESSION["type"] = "visiteur";}
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<meta charset="UTF-8">
-	<link rel="icon" href="View/images/icon_tab.png">
-	<link rel="stylesheet" href="View/assets/css/Login.css">
-	<title>Ecotopia: Log in</title>
-
-
+<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home page</title>
+  <link rel="stylesheet" href="view/assets/css/home.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" />
 </head>
-
 <body>
-	<!-- partial:index.partial.html -->
-	<div class="wrapper">
-		<div class="container">
-			<h1>Log in</h1>
+<div class="top-bar">
+    <div class="email-num">
+      <div>
+        <span class="mai-mail fg-primary"></span>
+        <a class="mail"href="ecotopia@gmail.com">Ecotopia@gmail.com</a>
+      </div>
+      <div class="d-inline-block ml-2">
+        <span class="mai-call fg-primary"></span>
+        <a href="callus:+2165892516">+2165892516</a>
+      </div>
+    </div>
+    <div class="col-md-4 text-right d-none d-md-block">
+      <div class="social-mini-button">
+        <p><i class="fab fa-facebook"></i></p>
+        <p><i class="fab fa-instagram"></i></p>
+        <p><i class="fab fa-snapchat-square"></i></p>
+        <p><i class="fab fa-pinterest-square"></i></p>
+        <p><i class="fab fa-youtube"></i></p>
+      </div>
+    </div>
+  </div>
+  <!-- .top-bar -->
 
-			<form class="form" action="#" method="POST">
-				<input type="text" placeholder="Username" name="name">
-				<input type="password" placeholder="Password" name="password">
-				<button type="submit" id="login-button">Login</button><br><br>
-				<a href="forgot.php" style="text-decoration: none;">forgot password?</a>
+  <!--barre de navigation-->
+  <nav class="bar-logo">
+    <h1>ECOTOPIA</h1>
+    <div class="onglets">
+    <?php if($_SESSION["type"] == "user"){ echo "<p class='link'> <a href='index.php' style=' color: #000000;text-decoration: none;'>Home</a> </p>";} ?>
+    <?php if($_SESSION["type"] == "user"){ echo "<p class='link'> <a href='view/profil.php' style=' color: #000000;text-decoration: none;'>Profil</a> </p>";} ?>
+   <?php if($_SESSION["type"] == "visiteur"){ echo "<p class='link'> <a href='log.php' style=' color: #000000;text-decoration: none;'>Login</a> </p>";} ?>
+   <?php if($_SESSION["type"] == "visiteur"){ echo "<p class='link'> <a href='view/formulair dinscription.php' style=' color: #000000;text-decoration: none;'>Sign Up</a> </p>";} ?>
+      <p class="link"> <a href="View/AfficherB.php" style=" color: #000000;text-decoration: none;">Blog</a> </p>
+      <p class="link"> <a href="" style=" color: #000000;text-decoration: none;">Events</a> </p>
+      <p class="link"> <a href="View/Afficherproduits.php" style=" color: #000000;text-decoration: none;">Shop</a> </p>
+      <p class="link">About us</p>
+      <form>
+        <input class="search" type="search" placeholder="Search..." />
+      </form>
+      <p> <a href="index.php" style=" color: #000000;text-decoration: none;"><i class="fas fa-heart"></i></a> </p>
+      <p><i class="fas fa-shopping-cart"></i></p>
+      <?php if($_SESSION["type"] == "user"){ echo "<p> <a href='view/profil.php' style='color: #000000;text-decoration: none;'><i class='fas fa-user-circle'></i></a> </p>";} ?>
+    </div>
+  </nav>
 
-			</form>
-		</div>
+  <section class="banner">
+        <video loop
+        muted
+        autoplay
+        preload="auto">
+        <source src="view/assets/videos/vid.mp4" type="video/mp4">
+    </video>
+        <div class="testimonial">
+            <div class="card">
+              
+               <p class="title">Welcome To Ecotopia </p>
+               <p class="phrase">Plant Less Plastic &nbsp&nbspPlant More Trees </p>
+            </div>
+        </div>
+    </section>
 
-
-		<ul class="bg-bubbles">
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
-	</div>
-	<!-- partial -->
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  
 </body>
-
 </html>

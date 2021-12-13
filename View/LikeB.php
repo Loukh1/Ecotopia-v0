@@ -1,11 +1,11 @@
 <?php
 session_start();
-include "../config.php";
+include "../config2.php";
 $post_id = $_GET['post_id'];
 $user_id = $_SESSION["id"];
 if ($_SESSION["type"] == "user") {
     $sql = "SELECT * from likes where post_id='".$post_id."' AND user_id='".$user_id."'";
-    $db = config::getConnexion();
+    $db = config2::getConnexion();
     try {
         $query = $db->prepare($sql);
         $query->execute();

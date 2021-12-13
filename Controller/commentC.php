@@ -24,12 +24,11 @@ class commentC {
     }
     function recuperercomment($id)
     {
-        $sql="SELECT * FROM comments where id = $id";
+        $sql="SELECT * FROM comments where id ='$id'";
         $db = config2::getConnexion();
         try{
             $query=$db->prepare($sql);
             $query->execute();
-
             $comment=$query->fetch();
             return $comment;
         }
@@ -66,7 +65,7 @@ class commentC {
             $t = $comment->gettext();
             $sql="UPDATE comments SET 
             comment= '" . $t . "'
-        WHERE post_id= '" . $id . "'";
+        WHERE id= '" . $id . "'";
             $query = $db->prepare($sql);
             $query->execute();
         } catch (PDOException $e) {

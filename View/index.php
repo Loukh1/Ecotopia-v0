@@ -190,7 +190,7 @@
               <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="dash/addE.php">Add Event</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="dash/Eventsphp">Show Events</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="dash/Events.php">Show Events</a></li>
                 </ul>
               </div>
             </li>
@@ -228,9 +228,12 @@
                 <i class="menu-arrow"></i>
               </a>
               <div class="collapse" id="ui-basic4">
-                <ul class="nav flex-column sub-menu">
+              <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="dash/addP.php">Add Product</a></li>
                   <li class="nav-item"> <a class="nav-link" href="dash/showP.php">Show Products</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="dash/addCat.php">Add Category</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="dash/showCAT.php">Show Categories</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="dash/stat.php">Show statistique</a></li>
                 </ul>
               </div>
             </li>
@@ -242,7 +245,7 @@
               </a>
               <div class="collapse" id="ui-basic5">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="dash/showC.php">Show Commands</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="dash/showC.php?state=none">Show Commands</a></li>
                   
                 </ul>
               </div>

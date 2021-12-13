@@ -64,7 +64,7 @@ if (
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Write Article</h4>
-                    <p class="card-description"> Basic form elements </p>
+                    <p class="card-description"> </p>
                     <form class="forms-sample" method="POST">
                       <div class="form-group">
                         <label for="exampleInputName1">Title</label>

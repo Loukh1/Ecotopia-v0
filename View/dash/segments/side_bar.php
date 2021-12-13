@@ -49,9 +49,12 @@
                 <i class="menu-arrow"></i>
               </a>
               <div class="collapse" id="ui-basic4">
-                <ul class="nav flex-column sub-menu">
+              <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="addP.php">Add Product</a></li>
                   <li class="nav-item"> <a class="nav-link" href="showP.php">Show Products</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="addCat.php">Add Category</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="showCAT.php">Show Categories</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="stat.php">Show statistique</a></li>
                 </ul>
               </div>
             </li>
@@ -63,7 +66,7 @@
               </a>
               <div class="collapse" id="ui-basic5">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="showC.php">Show Commands</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="showC.php?state=none">Show Commands</a></li>
 
                 </ul>
               </div>

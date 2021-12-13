@@ -1,6 +1,13 @@
 <?php
 session_start();
+include '../../Controller/produitC.php';
+$produitC = new produitC();
+$listeproduits = $produitC->afficherproduits();
+$tri=$produitC->trie_asc();
+if(isset($_POST["submit"])){$listeproduits = $tri; }
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -20,80 +27,52 @@ session_start();
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-            <div class="page-header">
-              <h3 class="page-title"> Basic Tables </h3>
-              <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Tables</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Basic tables</li>
-                </ol>
-              </nav>
-            </div>
-            <div class="row">
-              <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Striped Table</h4>
-                    
-                    </p>
-                    <table class="table table-hover">
-                      <thead>
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">All products</h4>
+
+                  </p>
+                  <form action="showP.php" method="POST">
+                    <input type="submit" name="submit" VALUE="triascendant" >
+                   
+                   </form>
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>product ID</th>
+                        <th>nom</th>
+                        <th>prix</th>
+                        <th>quantite</th>
+                        <th>idcategorie</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      foreach ($listeproduits as $produits) {
+                      ?>
                         <tr>
-                          <th>User</th>
-                          <th>Product</th>
-                          <th>Sale</th>
-                          <th>Status</th>
-                          <th>Delete</th>
-                          <th>Product</th>
-                          <th>Sale</th>
-                          <th>Status</th>
-                          <th>Delete</th>
+                          <td><?php echo $produits['id']; ?></td>
+                          <td><?php echo $produits['nom']; ?></td>
+                          <td><?php echo $produits['prix']; ?></td>
+                          <td><?php echo $produits['quantite']; ?></td>
+                          <td><?php echo $produits['idcategorie']; ?></td>
+                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw"><?php $h=$produits['id']; echo"<a style=' color: #ffffff;text-decoration: none;'  href='ModifyP.php?id=$h'>Modifier</a>";?></button></td>
+                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw"><?php $h=$produits['id']; $l=$_SERVER['DOCUMENT_ROOT']."/ecotopia/View/SupprimerP.php"; echo"<a style=' color: #ffffff;text-decoration: none;' href='../SupprimerP.php?id=$h'>Delete</a>";?></button></td>
                         </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Jacob</td>
-                          <td>Photoshop</td>
-                          <td> 28.76%</td>
-                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw">Primary</button></td>
-                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw">Danger</button></td>
-                        </tr>
-                        <tr>
-                          <td>Messsy</td>
-                          <td>Flash</td>
-                          <td  > 21.06% </td>
-                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw">Primary</button></td>
-                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw">Danger</button></td>
-                        </tr>
-                        <tr>
-                          <td>John</td>
-                          <td>Premier</td>
-                          <td  > 35.00% </td>
-                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw">Primary</button></td>
-                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw">Danger</button></td>
-                        </tr>
-                        <tr>
-                          <td>Peter</td>
-                          <td>After effects</td>
-                          <td > 82.00</td>
-                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw">Primary</button></td>
-                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw">Danger</button></td>
-                        </tr>
-                        <tr>
-                          <td>Dave</td>
-                          <td>53275535</td>
-                          <td > 98.05</td>
-                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw">Primary</button></td>
-                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw">Danger</button></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
+                      <?php
+                      }
+                      ?>
+                    </tbody>
+                  </table>
                 </div>
               </div>
-             
-             
             </div>
+
+
+          </div>
           </div>
           <!-- content-wrapper ends -->
           <!-- partial:../../partials/_footer.html -->

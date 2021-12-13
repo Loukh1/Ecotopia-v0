@@ -9,10 +9,16 @@ body {
   
 }
 a {
-  color: lightgreen;
+  color: #537e53;
   text-decoration: none;
   background-color: transparent;
+  font-family:serif;
 }
+.ecotopia{
+    font-size: 1.5em;
+    font-weight:bold;
+    font-family:serif;
+  }
 
 a:hover {
   color: #3463ff;
@@ -25,7 +31,7 @@ nav {
   flex-wrap: wrap;
   justify-content: space-between;
 
-  background-color: lightgreen;
+  background-color: #537e53;
   position: sticky;
   top: 0;
 }
@@ -44,50 +50,61 @@ nav .onglets p {
 /* fin de la barre de navigation */
 
 .social-mini-button {
-  display: flex;
-  gap: 1rem;
-  color : #fff
-}
+    display: flex;
+    gap: 1rem;
+    top:-10px;
+    left:365px;
+    position:absolute;
+    color : #fff;
+    font-family:serif;
+  }
 .e{
     position: absolute;
     left: 1000px;
 }
 .top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: lightgreen;
-  margin-top: -10px;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  width: 99%;
-  margin-left: -10px;
-}
-.email-num {
-  display: flex;
-  gap: 1rem;
-  color :#fff;
-  font-size: 22px;
-}
-.email-num>div>a{
-  color: #fff !important;
-  text-decoration: none;
-}
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #537e53;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height:3.5rem;
+    margin-left: -10px;
+  }
+  .email-num {
+    display: flex;
+    gap: 1rem;
+    color :#fff;
+    font-size: 22px;
+    font-family:serif;
+  }
+  .email-num>div>a{
+    color: #fff !important;
+    text-decoration: none;
+    font-family:serif;
+  }
+  .boutonlog
+  {
+    position:absolute;
+    left:1200px;
+    top:10px;
+    background-color: rgb(235, 235, 235);
+    opacity:60%;
+  }
 
-
-.bar-logo {
-  display: flex;
-  align-items: center;
-  background-color: white;
-  height: 4.5rem;
-  box-shadow: 0px 5px 7px 1px #8080801f;
-  width: 100%;
-  margin-left: -9px;
-  padding-left: 20px;
-  z-index: 1;
-  top: -1px;
-
-}
+  .bar-logo {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    height: 4.5rem;
+    box-shadow: 0px 5px 7px 1px #8080801f;
+    width: 100%;
+    margin-left: -9px;
+    padding-left: 20px;
+    font-family:serif;  
+      z-index: 3;
+  }
 
 .search {
    
@@ -97,10 +114,11 @@ nav .onglets p {
     padding: 0.5rem;
     margin-left: 1rem;
     margin-right: 1rem;
+    width:180px;
   
 }
 .footer{
-    background: lightgreen;
+    background: #537e53;
     color: #fff;
     display: flex;
     align-items: center;

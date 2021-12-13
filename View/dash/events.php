@@ -1,5 +1,8 @@
 <?php
 session_start();
+include_once '../../Controller/eventc.php';
+	$eventC=new eventC();
+	$listeevent=$eventC->afficherevent(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,53 +42,38 @@ session_start();
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th>User</th>
-                          <th>Product</th>
-                          <th>Sale</th>
-                          <th>Status</th>
-                          <th>Delete</th>
-                          <th>Product</th>
-                          <th>Sale</th>
-                          <th>Status</th>
+                          <th>Id</th>
+                          <th>Nom</th>
+                          <th>Gover</th>
+                          <th>Code postal</th>
+                          <th>Ville</th>
+                          <th>lieu</th>
+                          <th>Adress</th>
+                          <th>Description</th>
+                          <th>Modify</th>
                           <th>Delete</th>
                         </tr>
                       </thead>
                       <tbody>
+                      <?php
+                      foreach ($listeevent as $article) {
+                      ?>
                         <tr>
-                          <td>Jacob</td>
-                          <td>Photoshop</td>
-                          <td> 28.76%</td>
-                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw">Primary</button></td>
-                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw">Danger</button></td>
+                          <td><?php echo $article['id_e']; ?></td>
+                          <td><?php echo $article['nom_e']; ?></td>
+                          <td><?php echo $article['gov_e']; ?></td>
+                          <td><?php echo $article['cp_e']; ?></td>
+                          <td><?php echo $article['ville_e']; ?></td>
+                          <td><?php echo $article['lieu_e']; ?></td>
+                          <td><?php echo $article['adresse_e']; ?></td>
+                          <td><?php echo $article['desc_e']; ?></td>
+                         
+                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw"><?php $h=$article['id_e']; echo"<a style=' color: #ffffff;text-decoration: none;'  href='ModifyE.php?id=$h'>Modifier</a>";?></button></td>
+                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw"><?php $h=$article['id_e'];  echo"<a style=' color: #ffffff;text-decoration: none;' href='../SupprimerE.php?id=$h'>Delete</a>";?></button></td>
                         </tr>
-                        <tr>
-                          <td>Messsy</td>
-                          <td>Flash</td>
-                          <td  > 21.06% </td>
-                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw">Primary</button></td>
-                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw">Danger</button></td>
-                        </tr>
-                        <tr>
-                          <td>John</td>
-                          <td>Premier</td>
-                          <td  > 35.00% </td>
-                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw">Primary</button></td>
-                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw">Danger</button></td>
-                        </tr>
-                        <tr>
-                          <td>Peter</td>
-                          <td>After effects</td>
-                          <td > 82.00</td>
-                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw">Primary</button></td>
-                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw">Danger</button></td>
-                        </tr>
-                        <tr>
-                          <td>Dave</td>
-                          <td>53275535</td>
-                          <td > 98.05</td>
-                          <td><button type="button" class="btn btn-primary btn-rounded btn-fw">Primary</button></td>
-                          <td><button type="button" class="btn btn-danger btn-rounded btn-fw">Danger</button></td>
-                        </tr>
+                      <?php
+                      }
+                      ?>
                       </tbody>
                     </table>
                   </div>

@@ -20,6 +20,7 @@ $h = $search['post_id'];
   <title>Ecotopia-Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font awesome icon -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
   <link rel="stylesheet" href="assets/css/blog.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -36,7 +37,7 @@ $h = $search['post_id'];
     <div class="email-num">
       <div>
         <span class="mai-mail fg-primary"></span>
-        <a href="ecotopia@gamil.com">ecotopia@gamil.com</a>
+        <a href="ecotopia@gamil.com">Ecotopia@gmail.com</a>
       </div>
       <div class="d-inline-block ml-2">
         <span class="mai-call fg-primary"></span>
@@ -63,27 +64,28 @@ $h = $search['post_id'];
     
     <div class="onglets">
       <br>
-      <p class="link">Home</p>
-      <p class="link">Events</p>
-      <p class="link">Blog</p>
-      <p class="link">Shop</p>
-      <p class="link">About us</p>
+      <p class="link"> <a href="../index.php" style=" color: #000000;text-decoration: none;">Home</a> </p>
+      <?php if($_SESSION["type"] == "user"){ echo "<p class='link'> <a href='profil.php' style=' color: #000000;text-decoration: none;'>Profil</a> </p>";} ?>
+      <p class="link"> <a href="AfficherB.php" style=" color: #000000;text-decoration: none;">Blog</a> </p>
+      <p class="link"> <a href="" style=" color: #000000;text-decoration: none;">Events</a> </p>
+      <p class="link"> <a href="Afficherproduits.php" style=" color: #000000;text-decoration: none;">Shop</a> </p>
+      <p class="link"><a href="Afficherproduits.php" style=" color: #000000;text-decoration: none;"> About us</a></p>
       <form method="POST">
-        <input class="search" type="text" placeholder="search" name="search-box" />
+        <input class="search" type="text" placeholder="Search..." name="search-box" />
       </form>
       <p><i class="fas fa-heart"></i></p>
       <p><i class="fas fa-shopping-cart"></i></p>
+      <?php if($_SESSION["type"] == "user"){ echo "<p> <a href='view/profil.php' style='color: #000000;text-decoration: none;'><i class='fas fa-user-circle'></i></a> </p>";} ?>
+
     </div>
   </nav>
   <!-- end of header -->
   <div class="ff">
-    <label><?php $a = $_SESSION['type'];
-            $b = $_SESSION['user'];
-            echo "$a: $b"; ?></label><br>
+    
     <?php if ($_SESSION['type'] == "admin") {
       echo "<button ><a  href='Add.php'>Add Article</a></button><br>";
     } ?>
-    <button><a href='../logout.php'>Log out</a></button>
+   
 
     <div class="container">
       <h2 class="text-center mt-4 mb-4">Search for an article</h2>
@@ -113,7 +115,7 @@ $h = $search['post_id'];
           <?php
           foreach ($listeArticles as $article) {
           ?>
-          <div style='border: 4px solid lightgreen'>
+          <div style='border: 4px solid #537e53'>
             <div class="design-item">
               <div class="design-img">
                 <?php $h = $article['img'];

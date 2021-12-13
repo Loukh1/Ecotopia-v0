@@ -1,7 +1,7 @@
 <?php
 
 include  $_SERVER['DOCUMENT_ROOT'] . "/ecotopia/config.php";
-include_once  $_SERVER['DOCUMENT_ROOT'] . "/ecotopia//Model/article.php";
+include_once  $_SERVER['DOCUMENT_ROOT'] . "/ecotopia/Model/article.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/ecotopia/mailer/autoload.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/ecotopia/sms/twilio/vendor/autoload.php";
 
@@ -30,7 +30,7 @@ class articleC
                 'author' => $article->getAuthor(),
                 'dates' => $article->getDate(),
             ]);
-            $sql = "SELECT * FROM user";
+            $sql = "SELECT * FROM utilisateurs";
             $query = $db->prepare($sql);
             $query->execute();
             $liste = $query->fetchAll();
@@ -48,26 +48,25 @@ class articleC
             $mail->setFrom('ecotopia.tn@gmail.com', $article->getTitle());
 
 
-            $sid    = "ACba9bef90b6a40080a511ca078e7a0227";
-            $token  = "faf1141db25137cd2f7959e07c32ebc2";
-            $twilio = new Client($sid, $token);
+           
+           // $twilio = new Client($sid, $token);
             foreach ($liste as $a) {   // email eli bch tabath bih
                 $mail->addAddress($a['email']);   // email leli theb tabaathloo
 
                 $mail->Subject = 'Ecotopia: Check out our new article!!!';
                 $mail->Body    = $article->getBody();
-                $mail->send();
-                if($a['phone']!=NULL){
+                $mail->send();/*
+                if($a['telephonee']!=NULL){
                 $message = $twilio->messages
                     ->create(
-                        $a['phone'], // to 
+                        $a['telephonee'], // to 
                         array(
                             "from" => "+12312416952",
                             "body" => "Ecotopia: Check out this new article! '".$article->getTitle()."'"
                         )
                     );
                     $message->sid;
-                }
+                }*/
             }
         } catch (Exception $e) {
             echo 'Erreur: ' . $e->getMessage();

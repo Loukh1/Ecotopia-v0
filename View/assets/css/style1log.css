@@ -1,0 +1,180 @@
+
+body{
+   
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position:0% ;
+    background-image:url(bac.jpg);
+    /*background-color:darkred;*/
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+
+.login
+{
+    color:#fff;
+    font-family:serif;
+    font-size:60px;
+}
+form{
+    max-width: 400px;
+    margin: auto ;
+    margin-top: 150px;
+    background-color: rgba(0, 0, 0, 0.404);
+    text-align: center;
+    border-radius: 20px;
+    padding: 40px 60px;
+    color: #fff;
+    box-sizing: border-box;
+   
+    
+}
+nav {
+    /*alignement des phrases*/
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  
+    background-color: #537e53;
+    position: sticky;
+    top: 0;
+    font-family:serif;
+  }
+  
+  nav .onglets {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 23px;
+    font-family:serif;
+    margin-top:25px;
+    position:absolute;
+    left:735px;
+  }
+  nav .onglets p {
+    margin-right: 20px;
+    cursor: pointer;
+    font-family:serif;
+  }
+  
+  /* fin de la barre de navigation */
+  
+  .social-mini-button {
+    display: flex;
+    gap: 1rem;
+    top:-10px;
+    left:1400px;
+    position:absolute;
+    color : #fff;
+    font-family:serif;
+  }
+  .num{
+    position:absolute;
+    left:300px;
+    top:300px;
+  }
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #537e53;
+   position:absolute;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    top:0px;
+    height:3.5rem;
+    margin-left: -10px;
+    width:1800px;
+  }
+ 
+  .email-num {
+    display: flex;
+    gap: 1rem;
+    color :#fff;
+    font-size: 22px;
+    font-family:serif;
+    position:absolute;
+    margin-left:200px;
+  }
+  .email-num>div>a{
+    color: #fff !important;
+    text-decoration: none;
+    font-family:serif;
+  }
+  
+  
+  .bar-logo {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    height: 4.5rem;
+    box-shadow: 0px 5px 7px 1px #8080801f;
+    width: 100%;
+    margin-left: -9px;
+    padding-left: 20px;
+    font-family:serif;
+    z-index: 3;
+  }
+  
+  .search {
+     
+      background: whitesmoke;
+      border: none;
+      border-radius: 13px;
+      padding: 0.5rem;
+      margin-left: 1rem;
+      margin-right: 1rem;
+      font-family:serif;
+      top:10px;
+      position:absolute;
+      width:180px;
+      top:20px;
+      left:1320px;
+  }  
+
+form .inputs input[type="text"], input[type="password"]{
+    
+    border-radius: 20px;
+    border:none;
+    outline: none;
+}
+form .inputs input[type="text"], input[type="email"]{
+    
+    border-radius: 20px;
+    border:none;
+    outline: none;
+    
+}
+
+/*form p.inscription{
+    margin-bottom: 20px;
+}*/
+/*form p.inscription span{
+    color:#4FB3ED;
+}*/
+form button{
+    padding: 15px 25px;
+    border: none;
+    border-radius: 20px;
+    font-size: 15px;
+    color: #fff;
+    background-color:#c2ddc0 ;
+    opacity:80%;
+    outline: none;
+    cursor: pointer;
+    margin: 20px;
+    width:200px;
+
+}
+.form-control{
+    max-width: 380px;
+}
+
+.login-form{
+   color: red;
+   
+   
+}

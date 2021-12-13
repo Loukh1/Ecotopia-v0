@@ -1,6 +1,6 @@
 <?php
 
-$connect = new PDO('mysql:host=localhost;dbname=blog', 'louay', '010607.Lk');
+$connect = new PDO('mysql:host=localhost;dbname=ecotopia', 'root', '');
 
 if(isset($_POST["query"]))
 {	

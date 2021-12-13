@@ -10,18 +10,19 @@ $articleC = new articleC();
 $listeArticles = $articleC->afficherArticles();
 $comment = NULL;
 $commentC = new commentC();
-
+$a=$_GET['id'];
+$b=$_GET['post_id'];
 
 $articleC = new articleC();
 if (isset($_GET['post_id'])) {
     $article = $articleC->recupererArticle($_GET['post_id']);
-    $c = $commentC->recuperercomment($_GET['id']);
+    $c = $commentC->recuperercomment($a);
     $listeComments = $commentC->afficherComments($_GET['post_id']);
 }
 if (!empty($_POST["comment"])) {
     $comment = new comment(null, $_GET['post_id'], $_SESSION["id"], $_SESSION["user"], $_POST['comment'], date("Y-m-d"));
     $commentC->modifiercomment($comment, $_GET['id']);
-    header('refresh: 1');
+    header("location:specificB.php?post_id=$b");
 }
 ?>
 <!DOCTYPE html>
@@ -134,7 +135,7 @@ if (!empty($_POST["comment"])) {
                         <form class="" method="POST">
                             <span class="commenter-name">
                                 
-                                    <input type="text" name="comment" value=<?php if ($com['id'] == $_GET['id']) {echo $com['comment']; } ?>>
+                                    <input type="text" name="comment" value='<?php if ($c['id'] == $_GET['id']) {echo $c['comment']; } ?>'>
                                
                                 <button type="submit" class="btn btn-default">Modify</button>
                                 <button type="reset" class="btn btn-default">Cancel</button>
